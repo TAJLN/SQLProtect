@@ -1,0 +1,6 @@
+name: SQLProtect
+main: moonplex.tajln.SQLProtect
+version: 1.0
+
+description: Protects the blocks player has placed with MYSQL
+authors: [TAJLN]
