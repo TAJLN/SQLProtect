@@ -9,6 +9,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.UUID;
 
 public class SQLRepository implements Listener {
@@ -25,6 +26,15 @@ public class SQLRepository implements Listener {
 
     public SQLRepository()
     {
+        try {
+            Statement s = Databaser.Instance.GetConnection(Databaser.Instance.DB).createStatement();
+            s.executeUpdate("CREATE TABLE IF NOT EXISTS accounts (`id` int(11) NOT NULL,`uuid` varchar(100) NOT NULL);");
+            s.executeUpdate("CREATE TABLE IF NOT EXISTS blocks (`playerid` int(11) NOT NULL,`blocklocation` int(150) NOT NULL,`world` text NOT NULL);");
+            s.executeUpdate("CREATE TABLE IF NOT EXISTS friends (`playerid` int(11) NOT NULL,`frienduuid` text NOT NULL);");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
